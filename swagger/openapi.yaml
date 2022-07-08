@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: STD21032
+  description: 'Hello world'
+  version: 1.0.0
+tags:
+- name: Students
+- name: course
+paths:
+  /Students:
+    get:
+      tags:
+      - Students
+      summary: get all student
+      description: get student with detail
+      operationId: updatePet
+      parameters:
+      - name: page
+        in: query
+        style: form
+        explode: true
+        
+      - name: page-size
+        in: query
+        required: true
+        style: form
+        explode: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateStudent'
+        400:
+          description: bad request
+    post:
+      tags:
+      - Students
+      summary: create new students
+      description: create new students from array
+      operationId: addPet
+      requestBody:
+        description: Student to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateStudent'
+        400:
+          description: bad request
+components:
+  schemas:
+    CreateStudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Student:
+      type: object
+      properties:
+        name:
+          type: string
+      xml:
+        name: Category
