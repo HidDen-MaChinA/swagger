@@ -3,6 +3,8 @@ info:
   title: STD21032
   description: 'Hello world'
   version: 1.0.0
+servers:
+- url: https://std21032.com
 tags:
 - name: Students
 - name: course
@@ -19,7 +21,6 @@ paths:
         in: query
         style: form
         explode: true
-        
       - name: page-size
         in: query
         required: true
