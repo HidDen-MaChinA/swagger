@@ -49,6 +49,30 @@ paths:
                 $ref: '#/components/schemas/Student'
         400:
           description: Bad request
+    patch:
+      tags:
+        - Students
+      operationId: update student
+      summary: update student
+      description: update student
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/patchStudent'
+              
+      responses:
+        200: 
+          description: deleted students
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/StudentDelete'
+        400:
+          description: Bad request  
  /Students/{id}:
     get:
       tags:
@@ -111,7 +135,7 @@ paths:
               schema:
                 type: array
                 items: 
-                  $ref: '#/components/schemas/StudentDelete'
+                  $ref: '#/components/schemas/getCourse'
         400:
           description: Bad request
     post:
@@ -120,6 +144,14 @@ paths:
       operationId: add course
       summary: change course
       description: get course
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/createCourse'
+        
       responses:
         200: 
           description: course
@@ -238,3 +270,40 @@ components:
         id:
           type: integer
           example: 1
+    getCourse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "course Test"  
+    patchStudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'franco'
+        address:
+          type: string
+          example: '1234lel'
+        phoneNumber:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+    PhoneNumber:
+      type: object
+      properties:
+          country-code:
+            type: string
+            example: 'el00p1'
+          number:
+            type: string
+            example: '0123123122'  
+    createCourse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'haha'
